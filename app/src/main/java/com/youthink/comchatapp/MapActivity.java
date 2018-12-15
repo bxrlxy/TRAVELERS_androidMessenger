@@ -19,6 +19,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -50,7 +52,7 @@ public class MapActivity extends AppCompatActivity
 
     private static final String TAG = "googlemap_example";
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
-    private static final int UPDATE_INTERVAL_MS = 1000;  // 1초
+    private static final int UPDATE_INTERVAL_MS = 100000;  // 1초
     private static final int FASTEST_UPDATE_INTERVAL_MS = 500; // 0.5초
     String myLocation = null;
 
@@ -75,6 +77,7 @@ public class MapActivity extends AppCompatActivity
     private View mLayout;  // Snackbar 사용하기 위해서는 View가 필요합니다.
     // (참고로 Toast에서는 Context가 필요했습니다.)
 
+    private String markerTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +92,16 @@ public class MapActivity extends AppCompatActivity
 
         Log.d(TAG, "onCreate");
 
+        Button yesButton = (Button)findViewById(R.id.yesB);
 
+        yesButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent_main = new Intent(MapActivity.this, MainActivity.class);
+                intent_main.putExtra("user_addr",markerTitle);
+                startActivity(intent_main);
+            }
+        });
 
         locationRequest = new LocationRequest()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -128,7 +140,12 @@ public class MapActivity extends AppCompatActivity
                         = new LatLng(location.getLatitude(), location.getLongitude());
 
 
-                String markerTitle = getCurrentAddress(currentPosition);
+                markerTitle = getCurrentAddress(currentPosition);
+                markerTitle = markerTitle.replace("대한민국","");
+
+                TextView address_view = (TextView) findViewById(R.id.address) ;
+                address_view.setText(String.format(markerTitle));
+
                 String markerSnippet = "위도:" + String.valueOf(location.getLatitude())
                         + " 경도:" + String.valueOf(location.getLongitude());
 

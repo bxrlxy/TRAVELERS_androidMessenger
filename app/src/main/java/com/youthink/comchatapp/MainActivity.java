@@ -1,119 +1,112 @@
 package com.youthink.comchatapp;
 
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.widget.TextView;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.TabHost;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ListView listView;
-    private EditText editText;
-    private Button button;
-
-    private ArrayAdapter<String> arrayAdapter;
-    private ArrayList<String> room = new ArrayList<>();
-    private DatabaseReference reference = FirebaseDatabase.getInstance()
-            .getReference().getRoot();
-    private String name;
+    ViewPager viewPager;
+    FloatingActionButton fab;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (ListView) findViewById(R.id.list);
-        editText = (EditText) findViewById(R.id.editText);
-        button = (Button) findViewById(R.id.button);
+        viewPager=(ViewPager)findViewById(R.id.pager);
+        tabLayout=(TabLayout)findViewById(R.id.tabs);
+        MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(), getApplicationContext());
+        viewPager.setAdapter(adapter);
 
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, room);
-
-        listView.setAdapter(arrayAdapter);
-
-        createUserName();
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
-                Map<String, Object> map = new HashMap<String, Object>();
-                map.put(editText.getText().toString(), "");
-                reference.updateChildren(map);
+        tabLayout.setupWithViewPager(viewPager);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
+            public void onTabSelected(TabLayout.Tab tab){
+                viewPager.setCurrentItem(tab.getPosition());
             }
+            public void onTabUnselected(TabLayout.Tab tab) {    }
+            public void onTabReselected(TabLayout.Tab tab) {    }
         });
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Set<String> set = new HashSet<String>();
-                Iterator i = dataSnapshot.getChildren().iterator();
-
-                while (i.hasNext()) {
-                    set.add(((DataSnapshot) i.next()).getKey());
-                }
-
-                room.clear();
-                room.addAll(set);
-
-                arrayAdapter.notifyDataSetChanged();
-            }
-
-            @Override public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-                intent.putExtra("chat_room_name", ((TextView) view).getText().toString());
-                intent.putExtra("chat_user_name", name);
-                startActivity(intent);
-            }
-        });
+        fab = (FloatingActionButton)findViewById(R.id.fab);
+        fab.setOnClickListener(this);
     }
 
-    private void createUserName() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("채팅방에 사용할 이름을 입력하세요");
+    public void onClick(View v){
+        if(v==fab){
+            Intent intent = new Intent(this, CreateRoomActivity.class);
+            startActivityForResult(intent, 20);
 
-        final EditText builder_input = new EditText(this);
-
-        builder.setView(builder_input);
-        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialogInterface, int i) {
-                name = builder_input.getText().toString();
-            }
-        });
-
-        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-                // 취소를 누르면 이름을 입력할 때 까지 요청
-                createUserName();
-            }
-        });
-
-        builder.show();
+        }
     }
+
+    class MyPagerAdapter extends FragmentStatePagerAdapter {
+        ArrayList<Fragment> fragments=new ArrayList<>();
+        Context context = null;
+
+        String title[]=new String[]{"지도", "채팅방 목록","내 채팅방"};
+
+        public MyPagerAdapter(FragmentManager fm, Context context){
+            super(fm);
+            this.context = context;
+            //fragments.add(new MapFragment());
+            fragments.add(new AllChatFragment());
+            fragments.add(new AllChatFragment());
+            //fragments.add(new MyChatFragment());
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return title[position];
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == 20 && resultCode == RESULT_OK){
+            Toast toast = Toast.makeText(this, "나눔방 생성 완료", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
 }

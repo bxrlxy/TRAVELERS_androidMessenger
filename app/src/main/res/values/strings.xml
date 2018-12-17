@@ -2,6 +2,7 @@
     <string name="app_name">TRAVELERS</string>
     <string name="facebook_app_id">281266605766415</string>
     <string name="fb_login_protocol_scheme">fb281266605766415</string>
-
+    <string name="yes">YES</string>
+    <string name="on_map">현 위치가 맞습니까?</string>
 
 </resources>

@@ -26,35 +26,35 @@ TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 �
 
 ### 2-1-1. 사용자 로그인 여부 체크
 ```
-    private CallbackManager callbackManager;
+private CallbackManager callbackManager;
 ```
 
 FacebookSdk에서 제공하는 CallbackManager 객체는 LoginActivity의 onActivityResult() 메소드를 호출하여 콜백 여부를 판단하고 사용자 데이터를 처리한다.
 
 ```
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    callbackManager.onActivityResult(requestCode, resultCode, data);
+}
 ```
 
 ### 2-1-2. 사용자 로그인 성공 시
 ```
-    public void onSuccess(LoginResult loginResult) {
-                    GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(JSONObject object, GraphResponse response) {
-                            Log.v("result",object.toString());
-                            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
-                            startActivity(intent);
-                        }
-                    });
+public void onSuccess(LoginResult loginResult) {
+                GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        Log.v("result",object.toString());
+                        Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                        startActivity(intent);
+                    }
+                });
 
-                    Bundle parameters = new Bundle();
-                    parameters.putString("fields", "id,name,email,gender,birthday");
-                    graphRequest.setParameters(parameters);
-                    graphRequest.executeAsync();
-                }
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender,birthday");
+                graphRequest.setParameters(parameters);
+                graphRequest.executeAsync();
+            }
 ```
 사용자 로그인이 성공적으로 이루어진 경우 onSuccess() 메소드를 통해 다음 Activity인 MapActivity로 전환된다.
 

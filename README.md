@@ -43,7 +43,7 @@ Give an example
 ㅁㅁㅇㄻㄹㅇㄻㄻㄻㄹㅇ
 
 ## 3. 사용 오픈 소스 
-- Firebase의 Realtime Database를 이용한 채팅방 App: https://github.com/peanutsando/FirebaseChatRoom
+- [Firebase의 Realtime Database를 이용한 채팅방 App](https://github.com/peanutsando/FirebaseChatRoom)
 
 
 ## 4. 개발자 정보

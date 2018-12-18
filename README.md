@@ -24,7 +24,7 @@ TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 �
 ### 2-1. 페이스북 연동 로그인
 여행 관련 콘텐츠들을 찾을 때 '페이스북'을 활용하는 경우가 많다고 판단하여 페이스북 아이디를 통해 어플리케이션에 로그인 할 수 있도록 하였다. 
 
-### 2-1-1. 사용자 로그인 여부 체크
+#### 2-1-1. 사용자 로그인 여부 체크
 ```
 private CallbackManager callbackManager;
 ```
@@ -36,7 +36,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ```
 
-### 2-1-2. 사용자 로그인 성공 시
+#### 2-1-2. 사용자 로그인 성공 시
 ```
 public void onSuccess(LoginResult loginResult) {
                 GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
@@ -56,9 +56,11 @@ public void onSuccess(LoginResult loginResult) {
 ```
 사용자 로그인이 성공적으로 이루어진 경우 onSuccess() 메소드를 통해 다음 Activity인 MapActivity로 전환된다.
 
+
 ### 2-2. 사용자 실시간 위치 탐색
 사용자 위치는 구글 맵 API에서 GPS와 Geocoding을 활용하여 출력한다.
 
+#### 2-2-1. GPS 사용 퍼미션
 ```
 @Override
 public void onMapReady(GoogleMap googleMap) {
@@ -130,6 +132,7 @@ public void onMapReady(GoogleMap googleMap) {
 ```
 onMapReady() 메소드에서는 사용자로부터 GPS 위치 탐색 퍼미션을 받는다.
 
+#### 2-2-2. 사용자 현위치 탐색 및 저장
 ```
 public String getCurrentAddress(LatLng latlng) {
 
@@ -195,6 +198,8 @@ if (locationList.size() > 0) {
 }
 ```
 onCreate() 메소드 안에서 반환받은 addresses를 인자로 넘겨 setCurrentLocation() 메소드를 호출한다.
+
+#### 2-2-3. 사용자 현위치 지도 위 출력
 ```
 public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
 
@@ -216,6 +221,7 @@ public void setCurrentLocation(Location location, String markerTitle, String mar
 
 }
 ```
+#### 2-2-4. MainActivity 호출
 setCurrentLocation() 메소드는 사용자의 현 위치를 지도 위의 Marker로 출력한다.
 ```
 Button yesButton = (Button)findViewById(R.id.yesB);
@@ -230,6 +236,7 @@ Button yesButton = (Button)findViewById(R.id.yesB);
     });
 ```
 사용자가 자신의 현 위치를 확인한 후 YES Button을 클릭하면 다음 Activity인 MainActivity로 전환하며, 이 때 사용자의 주소를 통해 채팅방 목록을 Filtering 하기 위해 user_addr을 추가 인자로 넘겨준다.
+
 
 ### 2-3. 채팅방 만들기
 ㅁㄹㄻㄻㄹㅇㅇㅇㅁ

@@ -13,7 +13,7 @@ TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 �
 
 ### 1-1. 설치
 
-- .apk(링크) 파일을 안드로이드 기기에 다운로드 후, 실행하여 설치한다. 
+- [**apk 파일**](https://github.com/jae57/TRAVELERS_androidMessenger/blob/master/travelers.apk)을 안드로이드 기기에 다운로드 후, 실행하여 설치한다. 
 
 ### 1-2. 사용법 (+ 스크린샷)
 

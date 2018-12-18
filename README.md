@@ -252,9 +252,20 @@ Button yesButton = (Button)findViewById(R.id.yesB);
 Cloud Firestore에서 전체 채팅방 목록을 불러와 MainActivity 화면의 AllChatFragment에 출력한다. 이 때 나타나는 채팅방 목록은 위의 메소드에서 전달받은 사용자 현 위치를 활용하여 자동으로 필터링된 결과이다.
 
 #### 2-3-1. 채팅방 목록 Fragment
-
+```
+code
+```
+채팅방 목록은 MainActivity 화면 내의 ViewPager 위의 AllChatFragment에 출력한다.(?)
 
 #### 2-3-2. 채팅방 목록 필터링
+```
+private Query filterQuery(Query q){
+    StringTokenizer st = new StringTokenizer(user_addr, " ");
+    String key = st.nextToken();
+    return q.whereEqualTo("location",key);
+}
+```
+MapActivity에서 저장한 user_addr를 StringTokenizer로 단어 별로 분리한 후, 맨 앞 Token인 시,도 이름만 저장한다. Cloud Firestore adapter로 받아온 chatrooms 목록 중 location이 같은 시 또는 도인 채팅방만 Query 형태로 반환한다.
 
 
 </br>

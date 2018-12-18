@@ -1,5 +1,6 @@
 # TRAVELERS
 
+![main_icon](./icon.png)
 ## 여행자 간 위치 기반 실시간 거래 메신저 어플리케이션
 
 ### TRAVELERS 소개

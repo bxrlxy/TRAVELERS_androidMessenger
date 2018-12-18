@@ -4,7 +4,7 @@
 
 TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 서로 물품을 공유 또는 거래할 수 있는 안드로이드 메신저 어플리케이션입니다.
 </br>
-![main](./icon.png)
+<img width="50%" src="https://user-images.githubusercontent.com/39793267/50155803-62980200-0310-11e9-83b8-549d186afec5.png">
 
 </br>
 
@@ -13,7 +13,7 @@ TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 �
 
 ### 1-1. 설치
 
-- [**apk 파일**](https://github.com/jae57/TRAVELERS_androidMessenger/blob/master/travelers.apk)을 안드로이드 기기에 다운로드 후, 실행하여 설치한다. 
+- [**apk 파일**](https://github.com/jae57/TRAVELERS_androidMessenger/blob/master/TRAVELERS.apk)을 안드로이드 기기에 다운로드 후, 실행하여 설치한다. 
 
 ### 1-2. 사용법
 - TRAVELERS 어플리케이션을 접속하여 facebook 아이디로 로그인한다.
@@ -268,13 +268,53 @@ Button yesButton = (Button)findViewById(R.id.yesB);
 ### 2-3. 채팅방 목록 출력
 Cloud Firestore에서 전체 채팅방 목록을 불러와 MainActivity 화면의 AllChatFragment에 출력한다. 이 때 나타나는 채팅방 목록은 위의 메소드에서 전달받은 사용자 현 위치를 활용하여 자동으로 필터링된 결과이다.
 
-#### 2-3-1. 채팅방 목록 Fragment
+#### 2-3-1. 채팅방 객체 생성
 ```
-code
-```
-채팅방 목록은 MainActivity 화면 내의 ViewPager 위의 AllChatFragment에 출력한다.(?)
+ public ChatRoom(String title, String hostName, String remains, String deadline, String content, String location){
+        this.title = title;
+        this.hostName = hostName;
+        this.remains = remains;
+        this.deadline = deadline;
+        this.content = content;
+        this.location = location;
+        this.isComplete = false;
 
-#### 2-3-2. 채팅방 목록 필터링
+        Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();
+
+        this.timeStamp = ts;
+    }
+```
+Firestore로부터 받아온 데이터를 담기 위한 채팅방 객체 클래스를 생성한다.
+
+#### 2-3-2. 채팅방 목록 Fragment
+```
+        adapter = new FirestoreRecyclerAdapter<ChatRoom, ChatViewHolder>(options) {
+            public void onBindViewHolder(ChatViewHolder holder, int position, ChatRoom model){
+                holder.roomContent.setText(model.getContent());
+                holder.roomDeadline.setText(model.getDeadline());
+                holder.roomLocation.setText(model.getLocation());
+                holder.roomTitle.setText(model.getTitle());
+            }
+            public ChatViewHolder onCreateViewHolder(ViewGroup group, int i){
+                View view = LayoutInflater.from(group.getContext()).inflate(R.layout.item_chatroom, group, false);
+                final ChatViewHolder viewHolder = new ChatViewHolder(view);
+
+                view.setOnClickListener(new View.OnClickListener(){
+                    public void onClick(View view){
+                        Intent intent = new Intent(view.getContext(), ChatActivity.class);
+                        intent.putExtra("chat_room_name", viewHolder.roomTitle.getText());
+                        startActivity(intent);
+                        Toast.makeText(getActivity(),viewHolder.getAdapterPosition()+"!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                return viewHolder;
+            }
+        };
+```
+FirestoreRecyclerView를 구현한 AllChatFragment가 ViewPager의 요소로  
+
+#### 2-3-3. 채팅방 목록 필터링
 ```
 private Query filterQuery(Query q){
     StringTokenizer st = new StringTokenizer(user_addr, " ");
@@ -295,8 +335,8 @@ FirebaseFirestore db = FirebaseFirestore.getInstance();
 ```
 채팅방 목록이 저장되어 있는 Firestore에 접근하기 위해 FirebaseFirestore 객체를 생성한다.
 ```
-public void onClick(View v){
-    if(v == deadlineView){
+    public void onClick(View v){
+        if(v == deadlineView){
             Calendar c= Calendar.getInstance();
             year = c.get(Calendar.YEAR);
             month = c.get(Calendar.MONTH);
@@ -304,29 +344,27 @@ public void onClick(View v){
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                     new DatePickerDialog.OnDateSetListener(){
                         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
-                            System.out.println(year);
-                            System.out.println(monthOfYear);
-                            System.out.println(dayOfMonth);
+                            deadlineView.setText(year+"년"+monthOfYear+"월"+dayOfMonth+"일");
                         }
-                    }, year, month, day);
+                    }, year, month+1, day);
             datePickerDialog.show();
 
-    }
-    else if(v == createBtn) {
-        String title = titleView.getText().toString();
-        String remains = remainsView.getText().toString();
-        String content = contentView.getText().toString();
+        }else if(v == createBtn){
+            String title = titleView.getText().toString();
+            String remains = remainsView.getText().toString();
+            String content = contentView.getText().toString();
+            String deadline = deadlineView.getText().toString();
 
-        Intent intent = getIntent();
-        intent.putExtra("title",title);
-        intent.putExtra("remains",remains);
-        intent.putExtra("location",location);
-        ChatRoom room = new ChatRoom(title, "ME", remains, "20181213", content, location);
-        db.collection("chatrooms").add(room);
-        setResult(RESULT_OK,intent);
-        finish();
+            Intent intent = getIntent();
+            intent.putExtra("title",title);
+            intent.putExtra("remains",remains);
+            intent.putExtra("location",location);
+            ChatRoom room = new ChatRoom(title, "ME", remains, deadline, content, location);
+            db.collection("chatrooms").add(room);
+            setResult(RESULT_OK,intent);
+            finish();
+        }
     }
-}
 ```
 화면의 필드로부터 사용자가 입력한 값을 가져와 새로운 ChatRoom 객체를 생성하고, 이를 Firestore에 채팅방으로 추가한다. 이 때 채팅방 이름, 잔여 수량, 상세 정보는 텍스트 필드에서 입력을 받아 오고, 유효기간은 Calander 객체를 활용하여 입력받는다. 또한, 물건 거래 위치는 Spinner로 정해진 옵션으로만 입력을 받아 위치 기반 필터링에 용이하도록 하였다.
 
@@ -334,9 +372,62 @@ public void onClick(View v){
 
 ### 2-5. 채팅방 내 거래
 ```
-code
+private DatabaseReference ref = FirebaseDatabase.getInstance().getReference().getRoot();
 ```
-사용자가 전송 버튼을 누를 때마다 채팅방 이름과 사용자 이름을 맵으로 저장한다. 또한 누를 때마다 chatConversation() 메소드를 호출하여 arrayAdapter를 이용해 "사용자 이름 : 메세지 내용" 형태로 화면에 추가하고 업데이트한다.
+Firebase의 Realtime Database를 연결한다.
+
+```
+private void createUserName() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("채팅방에 사용할 ID를 입력하세요.");
+
+        final EditText builder_input = new EditText(this);
+
+        builder.setView(builder_input);
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialogInterface, int i) {
+                chat_user_name = builder_input.getText().toString();
+                Map<String,Object> map = new HashMap<String,Object>();
+                map.put(chat_room_name,"");
+                ref.updateChildren(map);
+
+            }
+        });
+
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+                // 취소를 누르면 이름을 입력할 때 까지 요청
+                createUserName();
+            }
+        });
+        builder.show();
+    }
+```
+채팅방 이름은 Intent를 통해 넘겨받고, 채팅방에서 사용할 ID는 사용자로부터 직접 입력받아 채팅방을 생성한다. 
+
+
+```
+button.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+
+                Map<String, Object> map = new HashMap<String, Object>();
+                key = reference.push().getKey();
+                
+                reference.updateChildren(map);
+                DatabaseReference root = reference.child(key);
+
+                Map<String, Object> objectMap = new HashMap<String, Object>();
+                objectMap.put("name", chat_user_name);
+                objectMap.put("message", editText.getText().toString());
+
+                root.updateChildren(objectMap);
+
+                editText.setText("");
+            }
+        });
+```
+사용자가 전송 버튼을 누를 때마다 채팅방 이름과 사용자 이름을 맵으로 저장한다. 또한 누를 때마다 root.updateChildren() 메소드를 호출하여 "사용자 이름 : 메세지 내용" 형태로 화면에 추가하고 업데이트한다.
 
 </br>
 

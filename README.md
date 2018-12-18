@@ -55,5 +55,5 @@ Give an example
 
 ## 5. 라이센스
 
-* [Apache 2.0 License](#https://github.com/jae57/TRAVELERS_androidMessenger/blob/master/LICENSE)
+* [https://github.com/jae57/TRAVELERS_androidMessenger/blob/master/LICENSE](#Apache 2.0 License)
 

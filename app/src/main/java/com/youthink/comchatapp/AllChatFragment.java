@@ -73,7 +73,7 @@ public class AllChatFragment extends Fragment {
                 view.setOnClickListener(new View.OnClickListener(){
                     public void onClick(View view){
                         Intent intent = new Intent(view.getContext(), ChatActivity.class);
-                        intent.putExtra("chat_room_name", viewHolder.roomTitle.toString());
+                        intent.putExtra("chat_room_name", viewHolder.roomTitle.getText());
                         startActivity(intent);
                         Toast.makeText(getActivity(),viewHolder.getAdapterPosition()+"!", Toast.LENGTH_SHORT).show();
                     }

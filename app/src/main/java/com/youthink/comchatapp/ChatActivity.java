@@ -141,4 +141,7 @@ public class ChatActivity extends AppCompatActivity {
 
         builder.show();
     }
+    private void checkRoom(){
+
+    }
 }

@@ -18,8 +18,7 @@ TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 �
 ### 1-2. 사용법
 - TRAVELERS 어플리케이션을 접속하여 facebook 아이디로 로그인한다.
 <div>
-    ![kakaotalk_20181218_210622468](https://user-images.githubusercontent.com/39793267/50154208-0206c600-030c-11e9-8312-aa5051d2d0f2.png)
-    ![screenshot_20181218-172159](https://user-images.githubusercontent.com/39793267/50154248-25ca0c00-030c-11e9-9de9-6993bd0d78ea.png)
+    ![kakaotalk_20181218_210622468](https://user-images.githubusercontent.com/39793267/50154208-0206c600-030c-11e9-8312-aa5051d2d0f2.png) ![screenshot_20181218-172159](https://user-images.githubusercontent.com/39793267/50154248-25ca0c00-030c-11e9-9de9-6993bd0d78ea.png)
     </div>
 
 - 본인의 위치 검색을 허용하여 실시간 위치를 탐색한다.

@@ -18,27 +18,27 @@ TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 �
 ### 1-2. 사용법
 - TRAVELERS 어플리케이션을 접속하여 facebook 아이디로 로그인한다.
 <div>
-    <img src="https://user-images.githubusercontent.com/39793267/50154935-0cc25a80-030e-11e9-9780-085732efa023.png" width="90%"></img>
-    <img src="https://user-images.githubusercontent.com/39793267/50154992-367b8180-030e-11e9-8688-f78aa859f7cc.png" width="90%"></img>
+    <img width="90%" src="https://user-images.githubusercontent.com/39793267/50154935-0cc25a80-030e-11e9-9780-085732efa023.png">
+    <img width="90%" src="https://user-images.githubusercontent.com/39793267/50154992-367b8180-030e-11e9-8688-f78aa859f7cc.png">
     </div>
 
 - 본인의 위치 검색을 허용하여 실시간 위치를 탐색한다.
 <div>
-    <img src="https://user-images.githubusercontent.com/39793267/50154259-32e6fb00-030c-11e9-9d9c-1a4ba3a41679.png" width="90%"></img>
-    <img src="https://user-images.githubusercontent.com/39793267/50154992-367b8180-030e-11e9-8688-f78aa859f7cc.png" width="90%"></img>
+    <img width="90%" src="https://user-images.githubusercontent.com/39793267/50154259-32e6fb00-030c-11e9-9d9c-1a4ba3a41679.png">
+    <img width="90%" src="https://user-images.githubusercontent.com/39793267/50154992-367b8180-030e-11e9-8688-f78aa859f7cc.png">
     </div>
 
 - 본인과 가까운 곳에 있는 사용자들이 생성한 채팅방을 확인한다.
-![kakaotalk_20181218_210123018](https://user-images.githubusercontent.com/39793267/50154299-54e07d80-030c-11e9-9c8c-eafd9fe32a0a.png)
+<img width="90%" src="https://user-images.githubusercontent.com/39793267/50155270-07194480-030f-11e9-831c-2848fad3f969.png">
 
 - 관심 있는 채팅방에 접속하거나, 새롭게 채팅방을 만든다.
 <div>
-![kakaotalk_20181218_210530531](https://user-images.githubusercontent.com/39793267/50154378-89543980-030c-11e9-9e27-ac7294f52f01.png)
-![screenshot_20181218-175938](https://user-images.githubusercontent.com/39793267/50154385-8b1dfd00-030c-11e9-8e8b-86f0924737f7.png)
+<img width="90%" src="https://user-images.githubusercontent.com/39793267/50155321-257f4000-030f-11e9-99c6-6b742921ced8.png">
+<img width="90%" src="https://user-images.githubusercontent.com/39793267/50155325-27490380-030f-11e9-8dc5-02eb5d9cb39e.png">
     </div>
     
 - 채팅방에서 사용자들과 거래한다.
-![kakaotalk_20181218_210531179](https://user-images.githubusercontent.com/39793267/50154417-9f61fa00-030c-11e9-9eb2-1e0ecb36d103.png)
+<img src="https://user-images.githubusercontent.com/39793267/50154417-9f61fa00-030c-11e9-9eb2-1e0ecb36d103.png" width="90%"></img>
 
 </br>
 

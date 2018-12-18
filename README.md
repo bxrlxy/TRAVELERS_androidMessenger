@@ -4,7 +4,7 @@
 
 TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 서로 물품을 공유 또는 거래할 수 있는 안드로이드 메신저 어플리케이션입니다.
 </br>
-<img width="50%" src="https://user-images.githubusercontent.com/39793267/50155803-62980200-0310-11e9-83b8-549d186afec5.png">
+<img width="30%" src="https://user-images.githubusercontent.com/39793267/50155803-62980200-0310-11e9-83b8-549d186afec5.png">
 
 </br>
 
@@ -12,8 +12,12 @@ TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 �
 ## 1. 설치 방법 및 사용법
 
 ### 1-1. 설치
-
 - [**apk 파일**](https://github.com/jae57/TRAVELERS_androidMessenger/blob/master/TRAVELERS.apk)을 안드로이드 기기에 다운로드 후, 실행하여 설치한다. 
+<div>
+<img width="30%" src="https://user-images.githubusercontent.com/39793267/50156749-e81cb180-0312-11e9-9056-9df2a3fabdca.png">
+<img width="30%" src="https://user-images.githubusercontent.com/39793267/50156751-e94dde80-0312-11e9-8306-9ab8fa66b642.png">
+<img width="30%" src="https://user-images.githubusercontent.com/39793267/50156754-ea7f0b80-0312-11e9-8c78-50cd21712ec9.png">
+    </div>
 
 ### 1-2. 사용법
 - TRAVELERS 어플리케이션을 접속하여 facebook 아이디로 로그인한다.

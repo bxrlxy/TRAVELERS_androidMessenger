@@ -356,6 +356,13 @@ android:theme="@style/AppTheme">
 ```
 drawable 파일에 위치한 icon.png 파일을 아이콘으로 적용시킨다.
 
+#### 3-2-2. 테마 컬러/상태바 설정
+```
+<item name="windowNoTitle">true</item>
+<item name="android:statusBarColor">#61C0BF</item>
+```
+상태창을 어플리케이션의 테마 컬러로 변경한다. 테마 컬러는 헥스 색상 코드로 표시된다. (#61C0BF) 
+
 </br>
 
 ## 4. 사용 오픈 소스 

@@ -321,17 +321,51 @@ code
 ```
 사용자가 전송 버튼을 누를 때마다 채팅방 이름과 사용자 이름을 맵으로 저장한다. 또한 누를 때마다 chatConversation() 메소드를 호출하여 arrayAdapter를 이용해 "사용자 이름 : 메세지 내용" 형태로 화면에 추가하고 업데이트한다.
 
+</br>
+
+## 3. 유저 인터페이스(UI, User Interface) 
+
+### 3-1. 스플래시 액티비티
+어플리케이션 initializing을 위한 대기시간에 수행될 스플래쉬 액티비티 페이지를 작성한다. 해당 페이지는 프로그램 실행 시 즉시 표시되며, 즉각적인 반응을 통해 사용자에게 보다 만족스러운 사용 경험을 제공한다.
+
+```
+public class SplashActivity extends Activity {
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       Intent intent = new Intent(this, LoginActivity.class);
+       intent.putExtra("state", "launch");
+       startActivity(intent);
+       finish();
+   }
+}
+```
+생성된 SplashActivity는 사용자가 기존에 맵핑시켰던 테마를 화면에 표시한다. 표시 후, 가장 처음으로 출력되는 LoginActivity로 이동하도록 한다.
+
+</br> 
+
+### 3-2. 아이콘/메인 인터페이스
+#### 3-2-1. 아이콘 등록
+```
+<application
+android:allowBackup="true"
+android:icon="@drawable/icon"
+android:label="트래블러스"
+android:supportsRtl="true"
+android:theme="@style/AppTheme">
+```
+drawable 파일에 위치한 icon.png 파일을 아이콘으로 적용시킨다.
 
 </br>
 
-## 3. 사용 오픈 소스 
+## 4. 사용 오픈 소스 
 - [Firebase의 Realtime Database를 이용한 채팅방 App](https://github.com/peanutsando/FirebaseChatRoom)
 - [페이스북 로그인 API](https://developers.facebook.com/docs/facebook-login/)
 - [구글 지도 API](https://developers.google.com/maps/documentation/android-sdk/intro?hl=ko)
 
 </br>
 
-## 4. 개발자 정보
+## 5. 개발자 정보
 
 - 1315024 김지혜(jae57) : 데이터베이스 연동 및 채팅방 목록 시각화, 최종발표자
 - 1515047 이승연 (ssyylee729) : 페이스북 연동 로그인 화면 제작, Google Map API 이용한 사용자 위치 검색, 중간발표자
@@ -340,7 +374,7 @@ code
 
 </br>
 
-## 5. 라이센스
+## 6. 라이센스
 
 * [Apache 2.0 License](https://github.com/jae57/TRAVELERS_androidMessenger/blob/master/LICENSE)
 

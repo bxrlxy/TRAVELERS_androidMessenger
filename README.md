@@ -246,13 +246,50 @@ Cloud Firestore에서 전체 채팅방 목록을 불러와 MainActivity 화면�
 
 
 
+
 ### 2-4. 새로운 채팅방 개설 
 MainActivity에서 새로운 채팅방 개설을 위한 FAB를 클릭한 경우 CreateRoomActivity로 전환된다.
 
 ```
 FirebaseFirestore db = FirebaseFirestore.getInstance();
 ```
-FirebaseFirestore 객체를 생성하여 
+채팅방 목록이 저장되어 있는 Firestore에 접근하기 위해 FirebaseFirestore 객체를 생성한다.
+```
+public void onClick(View v){
+    if(v == deadlineView){
+            Calendar c= Calendar.getInstance();
+            year = c.get(Calendar.YEAR);
+            month = c.get(Calendar.MONTH);
+            day = c.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener(){
+                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
+                            System.out.println(year);
+                            System.out.println(monthOfYear);
+                            System.out.println(dayOfMonth);
+                        }
+                    }, year, month, day);
+            datePickerDialog.show();
+
+    }
+    else if(v == createBtn) {
+        String title = titleView.getText().toString();
+        String remains = remainsView.getText().toString();
+        String content = contentView.getText().toString();
+
+        Intent intent = getIntent();
+        intent.putExtra("title",title);
+        intent.putExtra("remains",remains);
+        intent.putExtra("location",location);
+        ChatRoom room = new ChatRoom(title, "ME", remains, "20181213", content, location);
+        db.collection("chatrooms").add(room);
+        setResult(RESULT_OK,intent);
+        finish();
+    }
+}
+```
+화면의 필드로부터 사용자가 입력한 값을 가져와 새로운 ChatRoom 객체를 생성하고, 이를 Firestore에 채팅방으로 추가한다. 이 때 채팅방 이름, 잔여 수량, 상세 정보는 텍스트 필드에서 입력을 받아 오고, 유효기간은 Calander 객체를 활용하여 입력받는다. 또한, 물건 거래 위치는 Spinner로 입력을 받아 위치 기반 필터링에 용이하도록 하였다.
+
 
 ### 2-5. 채팅방 내 거래
 

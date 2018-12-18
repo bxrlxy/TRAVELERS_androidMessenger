@@ -18,15 +18,21 @@ import android.widget.Toast;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import static android.support.constraint.Constraints.TAG;
 
 
 public class AllChatFragment extends Fragment {
@@ -34,6 +40,7 @@ public class AllChatFragment extends Fragment {
     List<ChatRoom> chatRooms = new ArrayList<>();
     FirestoreRecyclerAdapter adapter;
     String user_addr;
+    Query query;
 
     public AllChatFragment() {}
 
@@ -44,7 +51,9 @@ public class AllChatFragment extends Fragment {
         MainActivity main = (MainActivity)getActivity();
         user_addr = main.getUserAddr();
 
-        Query query = FirebaseFirestore.getInstance().collection("chatrooms");
+//        Query query = FirebaseFirestore.getInstance().collection("chatrooms");
+//        Query filteredQuery = filterQuery(query);
+        getListItems();
         Query filteredQuery = filterQuery(query);
         FirestoreRecyclerOptions<ChatRoom> options = new FirestoreRecyclerOptions.Builder<ChatRoom>().setQuery(filteredQuery.orderBy("timeStamp"), ChatRoom.class).build();
 
@@ -113,5 +122,36 @@ public class AllChatFragment extends Fragment {
         super.onStart();
         adapter.startListening();
     }
+    private void getListItems() {
+       query = FirebaseFirestore.getInstance().collection("chatrooms");
+            query.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(queryDocumentSnapshots.isEmpty()) {
+                            Log.d(TAG, "onSuccess: LIST EMPTY");
+                            return;
+                        }
+                        else{
+
+                            List <ChatRoom> crooms = queryDocumentSnapshots.toObjects(ChatRoom.class);
+                            chatRooms.addAll(crooms);
+                            Log.d(TAG, "onSuccess: " + chatRooms);
+
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(),"Error getting data!!!", Toast.LENGTH_LONG).show();
+                    }
+                });
+       // Query filteredQuery = filterQuery(query);
+       // FirestoreRecyclerOptions<ChatRoom> options = new FirestoreRecyclerOptions.Builder<ChatRoom>().setQuery(filteredQuery.orderBy("timeStamp"), ChatRoom.class).build();
+
+    }
+
+
 
 }

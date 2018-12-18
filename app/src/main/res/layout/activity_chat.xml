@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.youthink.comchatapp.MainActivity">
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff">
     <ListView
-        android:layout_below="@+id/text"
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/layout"/>
-
+        android:id="@+id/text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="16dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp" />
     <LinearLayout
         android:id="@+id/layout"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="7dp"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#e2e2e2"        >
         <EditText
             android:id="@+id/editText"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/button"
-            android:text="전송"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="2dip"
+            android:layout_weight="1"
+            android:hint="메시지 쓰기..."
+            android:background="@null"
+            />
+        <ImageView
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="2dip"
+            android:layout_marginRight="5dip"
+            android:src="@drawable/send"
+            android:clickable="true"
+            android:maxWidth="45dp"
+            android:maxHeight="45dp"
+            android:adjustViewBounds="true"
+            />
     </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

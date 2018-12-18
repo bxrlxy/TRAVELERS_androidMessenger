@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             super(fm);
             this.context = context;
             fragments.add(new AllChatFragment());
-            fragments.add(new AllChatFragment());
+            fragments.add(new MyChatFragment());
         }
 
         @Override

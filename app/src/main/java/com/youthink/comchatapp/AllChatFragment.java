@@ -53,9 +53,9 @@ public class AllChatFragment extends Fragment {
 
 //        Query query = FirebaseFirestore.getInstance().collection("chatrooms");
 //        Query filteredQuery = filterQuery(query);
-        getListItems();
-        Query filteredQuery = filterQuery(query);
-        FirestoreRecyclerOptions<ChatRoom> options = new FirestoreRecyclerOptions.Builder<ChatRoom>().setQuery(filteredQuery.orderBy("timeStamp"), ChatRoom.class).build();
+        getListItems(); //전체 채팅방 리스트 받아오는 함수
+       // Query filteredQuery = filterQuery(query);
+        FirestoreRecyclerOptions<ChatRoom> options = new FirestoreRecyclerOptions.Builder<ChatRoom>().setQuery(query.orderBy("timeStamp"), ChatRoom.class).build();
 
 
         adapter = new FirestoreRecyclerAdapter<ChatRoom, ChatViewHolder>(options) {
@@ -72,8 +72,8 @@ public class AllChatFragment extends Fragment {
 
                 view.setOnClickListener(new View.OnClickListener(){
                     public void onClick(View view){
-                        Intent intent = new Intent(view.getContext(), ChatRoomActivity.class);
-                        //intent.putExtra()
+                        Intent intent = new Intent(view.getContext(), ChatActivity.class);
+                        intent.putExtra("chat_room_name", viewHolder.roomTitle.toString());
                         startActivity(intent);
                         Toast.makeText(getActivity(),viewHolder.getAdapterPosition()+"!", Toast.LENGTH_SHORT).show();
                     }

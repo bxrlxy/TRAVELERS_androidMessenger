@@ -78,14 +78,12 @@ public class CreateRoomActivity extends AppCompatActivity implements View.OnClic
         if(v == deadlineView){
             Calendar c= Calendar.getInstance();
             year = c.get(Calendar.YEAR);
-            month = c.get(Calendar.MONTH);
+            month = c.get(Calendar.MONTH) +1;
             day = c.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                     new DatePickerDialog.OnDateSetListener(){
                         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
-                            System.out.println(year);
-                            System.out.println(monthOfYear);
-                            System.out.println(dayOfMonth);
+                            deadlineView.setText(year+"년"+monthOfYear+"월"+dayOfMonth+"일");
                         }
                     }, year, month, day);
             datePickerDialog.show();
@@ -94,12 +92,13 @@ public class CreateRoomActivity extends AppCompatActivity implements View.OnClic
             String title = titleView.getText().toString();
             String remains = remainsView.getText().toString();
             String content = contentView.getText().toString();
+            String deadline = deadlineView.getText().toString();
 
             Intent intent = getIntent();
             intent.putExtra("title",title);
             intent.putExtra("remains",remains);
             intent.putExtra("location",location);
-            ChatRoom room = new ChatRoom(title, "ME", remains, "20181213", content, location);
+            ChatRoom room = new ChatRoom(title, "ME", remains, deadline, content, location);
             db.collection("chatrooms").add(room);
             setResult(RESULT_OK,intent);
             finish();

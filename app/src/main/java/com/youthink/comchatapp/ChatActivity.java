@@ -1,11 +1,14 @@
 package com.youthink.comchatapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -23,7 +26,8 @@ public class ChatActivity extends AppCompatActivity {
 
     private ListView listView;
     private EditText editText;
-    private Button button;
+    private ImageView button;
+    private String name;
 
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> room = new ArrayList<>();
@@ -34,17 +38,17 @@ public class ChatActivity extends AppCompatActivity {
     private String key;
     private String chat_user;
     private String chat_message;
-
+    private DatabaseReference ref = FirebaseDatabase.getInstance().getReference().getRoot();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
-        listView = (ListView) findViewById(R.id.list);
+        createUserName();
+        listView = (ListView) findViewById(R.id.text);
         editText = (EditText) findViewById(R.id.editText);
-        button = (Button) findViewById(R.id.button);
+        button = (ImageView) findViewById(R.id.button);
 
-        chat_user_name = getIntent().getExtras().get("chat_user_name").toString();
+
         chat_room_name = getIntent().getExtras().get("chat_room_name").toString();
 
         setTitle(chat_room_name + " 채팅방");
@@ -109,5 +113,32 @@ public class ChatActivity extends AppCompatActivity {
         }
 
         arrayAdapter.notifyDataSetChanged();
+    }
+    private void createUserName() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("채팅방에 사용할 ID를 입력하세요.");
+
+        final EditText builder_input = new EditText(this);
+
+        builder.setView(builder_input);
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialogInterface, int i) {
+                chat_user_name = builder_input.getText().toString();
+                Map<String,Object> map = new HashMap<String,Object>();
+                map.put(chat_room_name,"");
+                ref.updateChildren(map);
+
+            }
+        });
+
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+                // 취소를 누르면 이름을 입력할 때 까지 요청
+                createUserName();
+            }
+        });
+
+        builder.show();
     }
 }

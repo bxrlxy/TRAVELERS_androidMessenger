@@ -33,12 +33,12 @@ TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 �
 
 - 관심 있는 채팅방에 접속하거나, 새롭게 채팅방을 만든다.
 <div>
-<img width="30%" src="https://user-images.githubusercontent.com/39793267/50155321-257f4000-030f-11e9-99c6-6b742921ced8.png">
-<img width="30%" src="https://user-images.githubusercontent.com/39793267/50155325-27490380-030f-11e9-8dc5-02eb5d9cb39e.png">
+    <img width="30%" src="https://user-images.githubusercontent.com/39793267/50155321-257f4000-030f-11e9-99c6-6b742921ced8.png">
+    <img width="30%" src="https://user-images.githubusercontent.com/39793267/50155325-27490380-030f-11e9-8dc5-02eb5d9cb39e.png">
     </div>
-    
+
 - 채팅방에서 사용자들과 거래한다.
-<img src="https://user-images.githubusercontent.com/39793267/50154417-9f61fa00-030c-11e9-9eb2-1e0ecb36d103.png" width="30%"></img>
+<img width="30%" src="https://user-images.githubusercontent.com/39793267/50154417-9f61fa00-030c-11e9-9eb2-1e0ecb36d103.png">
 
 </br>
 

@@ -23,6 +23,9 @@ TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 �
 - 관심 있는 채팅방에 접속하거나, 새롭게 채팅방을 만든다.
 - 채팅방에서 사용자들과 거래한다.
 
+</br>
+
+
 ## 2. 주요 기능
 
 ### 2-1. 페이스북 연동 로그인
@@ -242,6 +245,7 @@ Button yesButton = (Button)findViewById(R.id.yesB);
 ```
 사용자가 자신의 현 위치를 확인한 후 YES Button을 클릭하면 다음 Activity인 MainActivity로 전환하며, 이 때 사용자의 주소를 통해 채팅방 목록을 Filtering 하기 위해 user_addr을 추가 인자로 넘겨준다.
 
+</br>
 
 ### 2-3. 채팅방 목록 출력
 Cloud Firestore에서 전체 채팅방 목록을 불러와 MainActivity 화면의 AllChatFragment에 출력한다. 이 때 나타나는 채팅방 목록은 위의 메소드에서 전달받은 사용자 현 위치를 활용하여 자동으로 필터링된 결과이다.
@@ -300,11 +304,14 @@ public void onClick(View v){
 
 
 
+</br>
 
 ## 3. 사용 오픈 소스 
 - [Firebase의 Realtime Database를 이용한 채팅방 App](https://github.com/peanutsando/FirebaseChatRoom)
 - [페이스북 로그인 API](https://developers.facebook.com/docs/facebook-login/)
 - [구글 지도 API](https://developers.google.com/maps/documentation/?hl=ko)
+
+</br>
 
 ## 4. 개발자 정보
 
@@ -312,6 +319,8 @@ public void onClick(View v){
 - 1515047 이승연 (ssyylee729) : 페이스북 연동 로그인 화면 제작, Google Map API 이용한 사용자 위치 검색, 중간발표자
 - 1717009 김지우 (bxrlxy) : 위치 기반 채팅방 필터링, README.md 작성, 최종발표자
 - 1717056 허선(sunpaka1018) : 사용자 인터페이스 디자인, 중간발표자
+
+</br>
 
 ## 5. 라이센스
 

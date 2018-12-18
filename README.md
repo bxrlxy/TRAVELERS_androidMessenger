@@ -177,7 +177,7 @@ public String getCurrentAddress(LatLng latlng) {
 
 }
 ```
-getCurrentAddress() 메소드에서는 Geocoder 객체를 생성하여 좌표를 주소로 변환한다. latlng 객체에서 경도와 위도를 인자로 전달받아 addresses에 주소를 저장한 후 반환한다.
+getCurrentAddress() 메소드에서는 Geocoder 객체를 생성하여 좌표를 주소로 변환한다. latlng 객체에서 경도와 위도를 인자로 전달받아 addresses에 변환된 주소를 저장한다.
 ```
 if (locationList.size() > 0) {
     location = locationList.get(locationList.size() - 1);
@@ -336,7 +336,7 @@ code
 - 1315024 김지혜(jae57) : 데이터베이스 연동 및 채팅방 목록 시각화, 최종발표자
 - 1515047 이승연 (ssyylee729) : 페이스북 연동 로그인 화면 제작, Google Map API 이용한 사용자 위치 검색, 중간발표자
 - 1717009 김지우 (bxrlxy) : 위치 기반 채팅방 필터링, README.md 작성, 최종발표자
-- 1717056 허선(sunpaka1018) : 사용자 인터페이스 디자인, 중간발표자
+- 1771056 허선(sunpaka1018) : 사용자 인터페이스 디자인, 중간발표자
 
 </br>
 

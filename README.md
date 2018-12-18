@@ -42,9 +42,11 @@ Give an example
 ### 2-4. 거래하기
 ㅁㅁㅇㄻㄹㅇㄻㄻㄻㄹㅇ
 
+
 ## 3. 사용 오픈 소스 
 - [Firebase의 Realtime Database를 이용한 채팅방 App](https://github.com/peanutsando/FirebaseChatRoom)
-
+- [페이스북 로그인 API](https://developers.facebook.com/docs/facebook-login/)
+- [구글 지도 API](https://developers.google.com/maps/documentation/?hl=ko)
 
 ## 4. 개발자 정보
 

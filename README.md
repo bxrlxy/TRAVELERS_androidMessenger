@@ -4,6 +4,7 @@
 
 TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 서로 물품을 공유 또는 거래할 수 있는 안드로이드 메신저 어플리케이션입니다.
 </br>
+
 <img width="30%" src="https://user-images.githubusercontent.com/39793267/50155803-62980200-0310-11e9-83b8-549d186afec5.png">
 
 </br>

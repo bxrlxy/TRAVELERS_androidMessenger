@@ -12,7 +12,7 @@ TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 �
 ## 1. 설치 방법 및 사용법
 
 ### 1-1. 설치
-- [**apk 파일**](https://github.com/jae57/TRAVELERS_androidMessenger/blob/master/TRAVELERS.apk)을 안드로이드 기기에 다운로드 후, 실행하여 설치한다. 
+- [**TRAVELERS.apk 파일**](https://github.com/jae57/TRAVELERS_androidMessenger/blob/master/TRAVELERS.apk)을 안드로이드 기기에 다운로드 후, 실행하여 설치한다. 
 <div>
 <img width="30%" src="https://user-images.githubusercontent.com/39793267/50156749-e81cb180-0312-11e9-9056-9df2a3fabdca.png">
 <img width="30%" src="https://user-images.githubusercontent.com/39793267/50156751-e94dde80-0312-11e9-8306-9ab8fa66b642.png">
@@ -29,13 +29,15 @@ TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 �
 - 본인의 위치 검색을 허용하여 실시간 위치를 탐색한다.
 <div>
     <img width="30%" src="https://user-images.githubusercontent.com/39793267/50154259-32e6fb00-030c-11e9-9d9c-1a4ba3a41679.png">
-    <img width="30%" src="https://user-images.githubusercontent.com/39793267/50154992-367b8180-030e-11e9-8688-f78aa859f7cc.png">
+    <img width="30%" src="https://user-images.githubusercontent.com/40630880/50207262-4ac48a80-03b1-11e9-867d-14732c336c83.PNG">
     </div>
 
-- 본인과 가까운 곳에 있는 사용자들이 생성한 채팅방을 확인한다.
-<img width="30%" src="https://user-images.githubusercontent.com/39793267/50155270-07194480-030f-11e9-831c-2848fad3f969.png">
-
-- 관심 있는 채팅방에 접속하거나, 새롭게 채팅방을 만든다.
+- 전체 채팅방 목록을 확인하거나, 본인과 가까운 곳에 있는 사용자들이 생성한 채팅방을 확인한다.
+<div>
+    <img width="30%" src="https://user-images.githubusercontent.com/39793267/50155270-07194480-030f-11e9-831c-2848fad3f969.png">
+    <img width="30%" src="https://user-images.githubusercontent.com/40630880/50207217-2f597f80-03b1-11e9-8004-b98d47b41dc6.PNG">
+   </div>
+- 관심 있는 채팅방에 채팅방 내에서 사용할 ID를 입력하여 접속하거나, 새롭게 채팅방을 만든다.
 <div>
     <img width="30%" src="https://user-images.githubusercontent.com/39793267/50155321-257f4000-030f-11e9-99c6-6b742921ced8.png">
     <img width="30%" src="https://user-images.githubusercontent.com/39793267/50155325-27490380-030f-11e9-8dc5-02eb5d9cb39e.png">

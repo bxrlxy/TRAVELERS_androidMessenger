@@ -2,7 +2,7 @@
 
 ### 여행자 간 위치 기반 실시간 거래 메신저 어플리케이션
 
-TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 서로 물품을 공유 또는 거래할 수 있는 안드로이드 메신저 어플리케이션입니다. [**시연동영상 보기**](https://youtu.be/VZrL3UlHMVw)
+TRAVELERS는 여행 중 가까운 사용자들끼리 채팅방에 접속하여 서로 물품을 공유 또는 거래할 수 있는 안드로이드 메신저 어플리케이션입니다. [**▶ 시연동영상 보기**](https://youtu.be/VZrL3UlHMVw)
 </br>
 
 <img width="30%" src="https://user-images.githubusercontent.com/39793267/50155803-62980200-0310-11e9-83b8-549d186afec5.png">
